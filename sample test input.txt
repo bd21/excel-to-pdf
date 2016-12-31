@@ -1,0 +1,3 @@
+Name	Date	Registration #	Start Coordinates	Personal Message	Recipient Email	Brightness	tinyurl
+John Glenn	12/21/2016	NST-KM-2223	"10 11 6.0, 81 50 23.0"	You're truly in the stars.&&LRest in piece.	example@hotmail.com	Extra Bright	sample url 1
+First Last	12/22/2016	AAA-BB-1234	"11 12 13.4, 55 66 77.8"		bbopper321@hotmail.com	Normal	sample url 2

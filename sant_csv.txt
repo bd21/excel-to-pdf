@@ -1,0 +1,4 @@
+Name	Date	Registration #	Binary?	Start Coordinates	coordinate 2 (binary)	Personal Message: ~ means new line (supports up to 4 lines)	Recipient Email	Brightness	tinyurl
+John Glenn	12/21/2016	NST-KM-2223	No	"10 11 6.0, 81 50 23.0"		You're truly in the stars.~Rest in piece.	example@hotmail.com	Extra Bright	sample url 1
+First Last	12/22/2016	AAA-BB-1234	No	"11 12 13.4, 55 66 77.8"			bbopper321@hotmail.com	Normal	sample url 2
+KyleSant	12/28/2016	ZZZ-ZZ-9999	Yes	"12 34 56.7, 89 01 23.4"	"10 11 6.0, 81 50 23.0"	Sample message	bd21@uw.edu	Bright	sample url 3
