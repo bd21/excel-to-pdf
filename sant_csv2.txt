@@ -1,0 +1,4 @@
+Name	Date	Registration #	Binary?	Start Coordinates		Personal Message	Recipient Email	Brightness	tinyurl
+John Glenn	12/21/2016	NST-KM-2223	No	"10 11 6.0, 81 50 23.0"		You're truly in the stars.&&LRest in piece.	example@hotmail.com	Extra Bright	sample url 1
+									
+									

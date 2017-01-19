@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.usermodel.*;
@@ -35,7 +36,7 @@ public class ExportToWord {
 	      }
 	}
 	
-	private void replaceFields(Order o, XWPFDocument document) {
+	private void replaceFields(Order o, XWPFDocument document) throws FileNotFoundException, IOException {
 		if(o.binary) {
 			replace(document, "#coordinate_1", o.coordinates1);
 			replace(document, "#coordinate_2", o.coordinates2);
@@ -58,45 +59,13 @@ public class ExportToWord {
 	}
 	
 	//replaces the before's with afters in all word tables and paragraphs
-	private void replace(XWPFDocument document, String before, String after) {
+	private void replace(XWPFDocument document, String before, String after) throws FileNotFoundException, IOException {
 		//iterate through paragraphs
 		boolean flag = false;//remove later and next line
 		System.out.println("Currently trying to replace " + before + " with " + after + ".");
-		for (XWPFParagraph p : document.getParagraphs()) {
-		    List<XWPFRun> runs = p.getRuns();
-		    if (runs != null) {
-		        for (XWPFRun r : runs) {
-		            String text = r.getText(0);
-		            if (text != null && text.contains(before)) {
-		                text = text.replace(before, after);
-		                r.setText(text, 0);
-		                flag = true;
-		                System.out.println("Replaced " + before + " with " + after + ".");
-		                
-		            }
-		        }
-		    }
-		}
-		
-		//through tables 
- 		for (XWPFTable tbl : document.getTables()) {
-			   for (XWPFTableRow row : tbl.getRows()) {
-			      for (XWPFTableCell cell : row.getTableCells()) {
-			         for (XWPFParagraph p : cell.getParagraphs()) {
-			            for (XWPFRun r : p.getRuns()) {
-			              String text = r.getText(0);
-			              if (text.contains(before)) {
-			                text = text.replace(before, after);
-			                r.setText(text, 0);
-			                flag = true;
-			              }
-			            }
-			         }
-			      }
-			   }
-		}
+		TextReplacer tr = new TextReplacer(before, after);
+		tr.replace(document);
  		
- 		System.out.println(flag);//remove later
 		//through textboxes
 		//turns out textboxes are a bitch to implement....fuck that
 	}
