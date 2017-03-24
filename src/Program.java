@@ -3,6 +3,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import java.util.*;
 import java.io.IOException;
 
+
 public class Program {
 
 	public static void main(String[] args) throws IOException, InvalidFormatException {
@@ -18,7 +19,10 @@ public class Program {
 		//plug in the list of orders into the word exporter
 		ExportToWord export = new ExportToWord(entries, "cert_test.docx");//input filename
 		export.replaceOrders();
-		System.out.println("document written successfully");
+		System.out.println("document written to word");
+		
+		System.out.println("converting to pdf...");
+		
 		
 		
 	}

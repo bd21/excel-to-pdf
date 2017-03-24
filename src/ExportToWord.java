@@ -11,11 +11,11 @@ import org.apache.poi.xwpf.usermodel.*;
 
 public class ExportToWord {
 	private List<Order> list;
-	private String filename;
-	public ExportToWord(List<Order> orders, String filename) throws InvalidFormatException, IOException {
+	private String inputFilename;
+	public ExportToWord(List<Order> orders, String inputFilename) throws InvalidFormatException, IOException {
 		this.list = orders;
 	    //Template Document
-	    this.filename = filename;
+	    this.inputFilename = inputFilename;
 	}
 
 	
@@ -23,12 +23,34 @@ public class ExportToWord {
 	public void replaceOrders() throws IOException, InvalidFormatException {
 	      //Write the Document in file system
 	      String basePath = new File("").getAbsolutePath();
+	      
+	      //We need to
+	      //create a copy of the file
+	      //rename it
+	      //replace fields
 	      for(Order o : this.list) {
-	    	  XWPFDocument document = new XWPFDocument(OPCPackage.open(this.filename));
-	    	  System.out.println("currently working on " + o.getName());
-	    	  FileOutputStream out = new FileOutputStream(
-		    		  new File(basePath + "/output/" + o.getName() + ".docx"));
+	    	  XWPFDocument document = new XWPFDocument(OPCPackage.open(this.inputFilename));
+	    	  //so we're working on the original that we don't want to touch
+	    	  
+	    	  //System.out.println("currently working on " + o.getName());
+	    	  //File output stream to create the new document as an exact copy as before
+	    	  
+	    	  String outputPath = basePath + "/" + o.getName() + ".docx";
+	    	  FileOutputStream out = new FileOutputStream(new File(outputPath));
+	    	  //write and close out the copy
+		      document.write(out);
+		      out.close();
+		      document.close();
+	      }
+	      for(Order o : this.list) {//i think this maintains the same ordering
+	    	  String outputPath = basePath + "/" + o.getName() + ".docx";
+	    	  XWPFDocument document = new XWPFDocument(OPCPackage.open(outputPath));
+	    	  //so we're working on the original that we don't want to touch
+	    	  
 
+	    	  FileOutputStream out = new FileOutputStream(new File(basePath + "/output/" + o.getName() + ".docx"));
+	    	  //write and close out the copy
+	    	  
 	    	  replaceFields(o, document);
 		      document.write(out);
 		      out.close();
